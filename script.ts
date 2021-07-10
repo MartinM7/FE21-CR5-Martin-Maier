@@ -20,7 +20,7 @@ class Locations {
 
   display() {
     return `<div class="col-12 col-md-6 col-xl-3 mb-4">
-              <div class="card mx-auto" style="width: 18rem;">
+              <div class="card mx-auto h-100" style="width: 18rem;">
                   <img src="${this.teaserImg}" class="img-fluid d-none d-sm-none d-md-block card-img-top" style="width: 300px; height: 200px;">
                   <div class="card-body">
                     <h5 class="card-title">${this.locationName}</h5>
