@@ -13,6 +13,9 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+var btnasc = document.getElementById('asc');
+var btndesc = document.getElementById('desc');
+var content = document.getElementById("locations");
 var arrayOfObjects = [];
 var Locations = /** @class */ (function () {
     function Locations(locationName, city, zipCode, address, teaserImg, visited) {
@@ -78,8 +81,30 @@ var restaurant1 = new Restaurants('Lemon Leaf Thai Restaurant', 'Vienna', 1050, 
 var restaurant2 = new Restaurants('SIXTA', 'Wien', 1050, 'Schönbrunner Straße 21', 'img/SIXTA.png', new Date(2020, 10, 9, 21, 10), '+43 15852856, +43 15852856', 'Classic Restaurant', 'http://www.sixta-restaurant.at/');
 var event1 = new Events('Kris Kristofferson', 'Wien', 1150, 'Wiener Stadthalle, Halle F, Roland Rainer Platz 1', 'img/Kris_Kristofferson.jpg', new Date(2020, 2, 8, 21, 30), 'Fr., 15.11.2021', '20:00', '58,50');
 var event2 = new Events('Lenny Kravitz', 'Wien', 1150, 'Wiener Stadthalle - Halle D, Roland Rainer Platz 1', 'img/Lenny_Kravitz.jpg', new Date(2021, 3, 11, 20, 15), 'Sat, 09.12.2029', '19:30', '47,80');
-console.log(arrayOfObjects);
-for (var _i = 0, arrayOfObjects_1 = arrayOfObjects; _i < arrayOfObjects_1.length; _i++) {
-    var val = arrayOfObjects_1[_i];
-    document.getElementById("locations").innerHTML += val.display() + val.closingDiv();
+btnasc.addEventListener('click', function () {
+    content.innerHTML = '';
+    arrayOfObjects.sort(function (a, b) {
+        if (a.visited > b.visited)
+            return 1;
+        if (a.visited < b.visited)
+            return -1;
+    });
+    render(arrayOfObjects);
+});
+btndesc.addEventListener('click', function () {
+    content.innerHTML = '';
+    arrayOfObjects.sort(function (a, b) {
+        if (a.visited > b.visited)
+            return -1;
+        if (a.visited < b.visited)
+            return 1;
+    });
+    render(arrayOfObjects);
+});
+function render(array) {
+    for (var _i = 0, array_1 = array; _i < array_1.length; _i++) {
+        var val = array_1[_i];
+        content.innerHTML += val.display() + val.closingDiv();
+    }
 }
+render(arrayOfObjects);
